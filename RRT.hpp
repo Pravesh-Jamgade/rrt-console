@@ -32,6 +32,7 @@ const int BOTTOM = 4;
 const double GOAL_THRESOLD = 5.0;
 const char* RRT_PATH = "Path.txt";
 const char* OBSTACLE_PATH = "Obstacle.txt";
+const char* BRANCH = "Branches.txt";
 #endif
 
 
@@ -63,7 +64,7 @@ class Cobs{
         Cobs(double startX, double startY, double CoWidth=5.0, double CoHeight=5.0):
 		CoWidth(CoWidth), CoHeight(CoHeight){
 			dStart = make_pair(startX, startY);
-			dEnd = make_pair(startX + CoHeight, startY + CoWidth);
+			dEnd = make_pair(startX + CoWidth, startY + CoHeight);
 		};
 
 		// check bbox of obstacle, adjust if goes beyond C-Space
@@ -227,7 +228,7 @@ class Node{
 };
 
     ostream& operator<<(ostream& os, const Node* a){
-        os <<a->position.first<<' '<<a->position.second<<'\n';
+        os <<a->position.first<<' '<<a->position.second;
 		return os;
 	}
 
@@ -443,6 +444,24 @@ class RRTMain{
           return (stat (name.c_str(), &buffer) == 0);
         }
 
+
+        ofstream fb;
+        void save_branches(Node* root){
+           queue<Node*> q;
+           q.push(root);
+
+           while(!q.empty()){
+                Node* cur = q.front();
+                q.pop();
+                fb << cur << " ";
+                for(auto a: cur->childrens){
+                    fb << a << " ";
+                    q.push(a);
+                }
+                fb << '\n';
+           }      
+        }
+
         void save(){
             char cCurrentPath[FILENAME_MAX];
             if (!GetCurrentDir(cCurrentPath, sizeof(cCurrentPath)))
@@ -455,11 +474,11 @@ class RRTMain{
             // traced path to file
             cout<<"Path Write back to File: "<<this->path.size()<<endl;
             ofstream fileStream(RRT_PATH, ios::out | ios::trunc);
-            fileStream<<this->goal;
+            fileStream<<this->goal<<'\n';
 
             for(int i=0; i< int(path.size()); i++){
                    Node* cur = path[i];
-                   fileStream<<cur;
+                   fileStream<<cur<<'\n';
             }
             fileStream.close();
 
@@ -468,11 +487,16 @@ class RRTMain{
             fileStream.open(OBSTACLE_PATH, ios::out | ios::trunc);
 
             for(auto obstacle: obstacles){
-                fileStream<<obstacle.dStart<<" "<<obstacle.CoWidth<<" "<<obstacle.CoWidth;
+                fileStream<<obstacle.dStart<<" "<<obstacle.CoWidth<<" "<<obstacle.CoHeight;
                 fileStream<<'\n';
             }
 
             fileStream.close();
+
+            cout<<"Other branches write back to File: "<<endl;
+            fb.open(BRANCH, ios::out | ios::trunc);
+            save_branches(this->root);
+            fb.close();
         }
 };
 
