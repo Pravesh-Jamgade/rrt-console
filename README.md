@@ -20,5 +20,6 @@ Parameters required - vector contaning all the of obstacles, width of cspace, he
 
 Plot Result:
 
-1. run plotter/Plotter.py - requires "Path.txt" and "Obstacles.txt" file in plotter folder
+1. run plotter/Plotter.py - requires "Path.txt", "Obstacles.txt" and less important "Branch.txt" file in plotter folder
+2. provide 'y' or 'n' to plot include "Branch.txt" -- prefer 'n', whole scrren will become cloudy with other not traced points
 
