@@ -24,3 +24,4 @@ Plot Result:
 2. provide 'y' or 'n' to plot include "Branch.txt" -- prefer 'n', whole scrren will become cloudy with other not traced points
 
 ![](https://github.com/Pravesh-Jamgade/rrt-console/blob/master/img/Screenshot%20from%202020-03-26%2018-46-55.png)
+![](https://github.com/Pravesh-Jamgade/rrt-console/blob/master/img/Screenshot%20from%202020-04-01%2021-46-31.png)
