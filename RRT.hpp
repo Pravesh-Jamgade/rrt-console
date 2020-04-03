@@ -501,6 +501,13 @@ class RRTMain{
             save_branches(this->root);
             fb.close();
         }
+
+        void plot(){
+           cout<<"==========================================================\n";
+           printf("                         Plot                            \n");
+           cout<<"==========================================================\n";
+           system("python3 plotter/Plotter.py");
+        }
 };
 
 #endif

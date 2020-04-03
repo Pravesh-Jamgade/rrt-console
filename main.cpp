@@ -24,6 +24,7 @@ int main(){
         }
 
         rrt.save();
+        rrt.plot();
 
 	return 0;
 }
