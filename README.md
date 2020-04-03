@@ -24,8 +24,7 @@ Branches.txt contains other explored branches
 Plot Result:
 EDIT:
 1. compile and run main.cpp. 
-#1. run plotter/Plotter.py - requires "Path.txt", "Obstacles.txt" and less important "Branch.txt" file in plotter folder
-2. python plotter will ask for whether to plot "Branch.txt", provide 'y' or 'n'  -- prefer 'n', as sometimes iterations are large whole scrren will become cloudy with other not traced points. For small number of iterations it's okay.
+2. python plotter will ask for whether to plot "Branch.txt", provide 'y' or 'n'  -- prefer 'n', as when iterations are large whole scrren will become cloudy with other branches. For small number of iterations it's okay.
 
 
 ![](https://github.com/Pravesh-Jamgade/rrt-console/blob/master/img/Screenshot%20from%202020-03-26%2018-46-55.png)
