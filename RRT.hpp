@@ -246,6 +246,7 @@ class RRTMain{
             this->stepSize = 5.0;
 			this->maxIterations = 1000;
 			this->lastNode = new Node;
+            this->goalReached = false;
 		};
 
 	private:
@@ -256,6 +257,7 @@ class RRTMain{
 		int maxIterations;
         double stepSize;
 		vector<Node*> path;
+        bool goalReached;
 
 	public:
 		void welcome(){
@@ -374,8 +376,8 @@ class RRTMain{
 
                     // look for nearest node from randomNode, from seen nodes until now
                     Node* nearestNode = getNearestNode(randomVertex);
-                    if(getDistance(nearestNode->position, randomVertex) > stepSize)
-                    {
+                    // if(getDistance(nearestNode->position, randomVertex) > stepSize)
+                    // {
                         // if distance is greater than step size, go for new configuration
                         Node* newConfNode = getNewConfiguration(nearestNode->position, randomVertex);
 
@@ -389,9 +391,10 @@ class RRTMain{
                         }else{
 
                         }
-                    }
+                    // }
 
                     if(getDistance(this->lastNode->position, this->goal->position) < GOAL_THRESOLD){
+                        this->goalReached = true;
                         cout<<"Reached\n";
                         break;
                     }
@@ -403,12 +406,12 @@ class RRTMain{
             }
 
 			Node* traversalNode;
-			if(getDistance(this->lastNode->position, this->goal->position) < GOAL_THRESOLD){
+			if(this->goalReached){
                 traversalNode = this->lastNode;
 			}
 			else{
 				// get nearest node to lastNode
-				traversalNode= getNearestNode(this->lastNode->position);
+				traversalNode= getNearestNode(this->goal->position);
 			}
 
             // trace back path

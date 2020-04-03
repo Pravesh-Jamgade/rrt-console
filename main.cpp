@@ -16,7 +16,7 @@ int main(){
         rrt.welcome();
         vertex aa = make_pair(100,300);
         vertex b = make_pair(139,5);
-        rrt.init(aa, b, 5, 10000);
+        rrt.init(aa, b, 5, 1000);
         try{
             rrt.run();
         }catch(exception &e){
