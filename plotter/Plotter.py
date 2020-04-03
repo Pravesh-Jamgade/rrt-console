@@ -11,7 +11,7 @@ run = True
 
 if __name__ == "__main__":
 
-	print("Usage: press 'y' or 'Y' to allow other points to showup\n Otherwise 'n' or 'N' \n")
+	print("Usage: press 'y' or 'Y' to plor Branches.txt\n\t Otherwise 'n' or 'N' \n")
 	branchOption = str(input())
 	allowBranch = False
 	if branchOption == 'y' or branchOption == 'Y':
@@ -94,12 +94,12 @@ if __name__ == "__main__":
 			black = (0,0,0)
 			for line in range(len(branches)):
 				for point in range(len(branches[line])-1):
-					print(branches[line][point], branches[line][point+1])
+					# print(branches[line][point], branches[line][point+1])
 					pygame.draw.ellipse(window, white, (branches[line][point][0], branches[line][point][1], 2, 2 ))
 					pygame.draw.ellipse(window, white, (branches[line][point+1][0], branches[line][point+1][1], 2, 2))
 
 					#pygame.draw.line(window, white, branches[line][point], branches[line][point+1], 2)
-				print('\n')
+				# print('\n')
 
 		
 		pygame.display.update()

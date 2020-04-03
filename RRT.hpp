@@ -272,6 +272,10 @@ class RRTMain{
                 cout<<"\t\t";
                 cout<<"W: "<<a.CoWidth<<" "<<"H:"<<a.CoHeight<<'\n';
             }
+
+            printf("\nStep size: %.1lf", this->stepSize);
+            printf("\nMax Iterations: %.1d", this->maxIterations);
+
 		}
 
 		vertex getRandomPosition(){
@@ -512,6 +516,11 @@ class RRTMain{
         }
 
         void plot(){
+            if(this->goalReached){
+                printf("\nGoal is reachable");
+            }else{
+                printf("\nGoal is not reachable. Path tracing from node nearest to goal node. Try increasing maxIterations");
+            }
            cout<<"\n==========================================================\n";
            printf("                         Plot                            \n");
            cout<<"==========================================================\n";
