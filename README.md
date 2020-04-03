@@ -16,7 +16,10 @@ Parameters required - vector contaning all the of obstacles, width of cspace, he
    
 5. Call run() method using RRTMain object
 6. Call save() methos using RRTMain object.
-7. Path.txt and Obstacles.txt will be generated, containing x,y co-ordinate's
+7. Path.txt, Obstacles.txt and Branches.txt will be generated, containing x,y co-ordinate's
+Path.txt contains out main route.
+Obstacle.txt contains x,y,width,height of obstacle
+Branches.txt contains other explored branches
 
 Plot Result:
 EDIT:
