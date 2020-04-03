@@ -13,7 +13,6 @@ int main(){
         all.push_back(c2);
 
         RRTMain rrt(all, 400, 400);
-        rrt.welcome();
         vertex aa = make_pair(100,300);
         vertex b = make_pair(139,5);
         rrt.init(aa, b, 5, 1000);
@@ -22,7 +21,8 @@ int main(){
         }catch(exception &e){
             cout<<"Exception.."<<e.what()<<endl;
         }
-
+        
+        rrt.welcome();
         rrt.save();
         rrt.plot();
 

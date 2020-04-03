@@ -1,6 +1,7 @@
 #ifndef RRT_H
 #define RRT_H
 #include <bits/stdc++.h>
+#include "logger.h"
 //#include<QJsonObject>
 //#include<QJsonDocument>
 //#include<QJsonArray>
@@ -42,6 +43,8 @@ namespace IRRT{
 }
 
 typedef pair<double, double> vertex;
+logger comlog(false);
+logger errlog(true);
 
 /*!
 \class
@@ -261,7 +264,14 @@ class RRTMain{
 
 	public:
 		void welcome(){
-            printf("\nC-Space Width- %.1lf,  Height- %.1lf, No. Of Obstacles- %.1d \n", width, height, int(obstacles.size()));
+            printf("\nC-Space Width:\t%.1lf\tHeight:\t%.1lf\nNo. Of Obstacles:\t%.1d\n", width, height, int(obstacles.size()));
+            printf("Obstacles:\n\r\tposition\t\tdimesion\n");
+            cout << fixed << setprecision(4);
+            for (auto a: this->obstacles){
+                cout<<"("<<a.dStart.first<<","<<a.dStart.second<<")";
+                cout<<"\t\t";
+                cout<<"W: "<<a.CoWidth<<" "<<"H:"<<a.CoHeight<<'\n';
+            }
 		}
 
 		vertex getRandomPosition(){
@@ -292,7 +302,7 @@ class RRTMain{
 
         void init(vertex start, vertex goal, double stepSize = 5, int maxIterations = 1000){
 			if(!validVertex(start)) {
-				cout<<"\nstart vertex not in range\n";
+				errlog.log("\nstart vertex not in range\n");
 			}
 			else {
 				this->root->position = start;
@@ -301,7 +311,7 @@ class RRTMain{
 			}
 
 			if(!validVertex(goal)) {
-				cout<<"\ngoal vertex not in range\n";
+				errlog.log("\ngoal vertex not in range\n");
 			}
 			else {
 				this->goal->position = goal;
@@ -363,9 +373,8 @@ class RRTMain{
 		}
 
 		void run(){
-            cout<<"Source: "; cout<<this->root;
-            cout<<"Destination: "; cout<<this->goal;
-            cout<<'\n';
+            errlog.log("\nSource:\t",  this->root->position);
+            errlog.log("\nDestination:\t", this->goal->position);
 
             int i=0;
             for(i=0; i< maxIterations; i++){
@@ -395,14 +404,14 @@ class RRTMain{
 
                     if(getDistance(this->lastNode->position, this->goal->position) < GOAL_THRESOLD){
                         this->goalReached = true;
-                        cout<<"Reached\n";
+                        comlog.log("\nReached");
                         break;
                     }
 
 			}
 
             if(i == maxIterations){
-                cout<<"Iterations done\n";
+                comlog.log("\nIterations done");
             }
 
 			Node* traversalNode;
@@ -415,9 +424,9 @@ class RRTMain{
 			}
 
             // trace back path
-            cout<<"Trace Path\n";
+            comlog.log("\nTrace Path");
 			while(traversalNode!=NULL){
-                cout<<traversalNode; cout<<" \n";
+                comlog.log('\n', traversalNode);
                 path.push_back(traversalNode);
 				traversalNode = traversalNode->parent;
 			}
@@ -475,7 +484,7 @@ class RRTMain{
             cCurrentPath[sizeof(cCurrentPath) - 1] = '\0'; /* not really required */
 
             // traced path to file
-            cout<<"Path Write back to File: "<<this->path.size()<<endl;
+            errlog.log("\nWrite traced path:\ttrue", "\ntraced path length:\t", this->path.size());
             ofstream fileStream(RRT_PATH, ios::out | ios::trunc);
             fileStream<<this->goal<<'\n';
 
@@ -485,8 +494,8 @@ class RRTMain{
             }
             fileStream.close();
 
-            // input obstacles to file
-            cout<<"Obstacles Write back to File: "<<this->obstacles.size()<<endl;
+            // output obstacles to file
+            errlog.log("\nWrite obstacles:\ttrue", "\nnumber of obstacles:\t",this->obstacles.size());
             fileStream.open(OBSTACLE_PATH, ios::out | ios::trunc);
 
             for(auto obstacle: obstacles){
@@ -496,14 +505,14 @@ class RRTMain{
 
             fileStream.close();
 
-            cout<<"Other branches write back to File: "<<endl;
+            errlog.log("\nWrite other explored branches:\ttrue");
             fb.open(BRANCH, ios::out | ios::trunc);
             save_branches(this->root);
             fb.close();
         }
 
         void plot(){
-           cout<<"==========================================================\n";
+           cout<<"\n==========================================================\n";
            printf("                         Plot                            \n");
            cout<<"==========================================================\n";
            system("python3 plotter/Plotter.py");
