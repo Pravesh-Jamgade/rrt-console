@@ -65,9 +65,9 @@ if __name__ == "__main__":
 		for event in pygame.event.get():
 			if event.type == pygame.QUIT:
 				run = False
-		red = (200,0,0)# destination
-		blue = (0,0,200)# source
-		green = (0,200,0)# path obtained
+		red = (255,0,0)# destination
+		blue = (0,0,255)# source
+		green = (0,255,0)# path obtained
 
 		pygame.draw.ellipse(window, red, (points[0][0], points[0][1], 10, 10 ))
 		pygame.draw.ellipse(window, blue, (points[len(points)-1][0], points[len(points)-1][1], 10, 10))
