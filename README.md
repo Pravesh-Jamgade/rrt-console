@@ -20,11 +20,14 @@ Parameters required - vector contaning all the of obstacles, width of cspace, he
 Path.txt contains out main route.
 Obstacle.txt contains x,y,width,height of obstacle
 Branches.txt contains other explored branches
+
 Environment:
+
 Algorithm written in c++. Output is plotted with python3 and pygame.
 Set python environment with given requirements.txt file in plotter/ folder.
+
 Plot Result:
-EDIT:
+
 1. compile and run main.cpp. 
 2. python plotter will ask for whether to plot "Branch.txt", provide 'y' or 'n'  -- prefer 'n', as when iterations are large whole scrren will become cloudy with other branches. For small number of iterations it's okay.
 
