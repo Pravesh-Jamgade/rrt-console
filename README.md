@@ -2,7 +2,7 @@
 
 Implementation of Rapidly exploring random trees.
 
-Run:
+Description:
 
 1. main.cpp  contains example to add obstacle and run algorithm.
 2. class Cobs- defines obstacle
@@ -20,7 +20,9 @@ Parameters required - vector contaning all the of obstacles, width of cspace, he
 Path.txt contains out main route.
 Obstacle.txt contains x,y,width,height of obstacle
 Branches.txt contains other explored branches
-
+Environment:
+Algorithm written in c++. Output is plotted with python3 and pygame.
+Set python environment with given requirements.txt file in plotter/ folder.
 Plot Result:
 EDIT:
 1. compile and run main.cpp. 
