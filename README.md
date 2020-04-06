@@ -1,7 +1,9 @@
 # rrt-console
 
 Implementation of Rapidly exploring random trees.
-![RRT Paper](https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree)
+Links:
+https://en.wikipedia.org/wiki/Rapidly-exploring_random_tree
+http://msl.cs.uiuc.edu/~lavalle/papers/LavKuf01.pdf
 
 Description:
 
