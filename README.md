@@ -1,7 +1,7 @@
 # rrt-console
 
 Implementation of Rapidly exploring random trees.
-
+![RRT Research Paper - Lavalle and Kuffer](http://msl.cs.uiuc.edu/~lavalle/papers/LavKuf01.pdf)
 Description:
 
 1. main.cpp  contains example to add obstacle and run algorithm.
