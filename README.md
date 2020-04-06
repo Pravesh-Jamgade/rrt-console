@@ -1,7 +1,7 @@
 # rrt-console
 
 Implementation of Rapidly exploring random trees.
-![RRT Research Paper - Lavalle and Kuffer](http://msl.cs.uiuc.edu/~lavalle/papers/LavKuf01.pdf)
+![RRT Research Paper](http://msl.cs.uiuc.edu/~lavalle/papers/LavKuf01.pdf)
 
 Description:
 
